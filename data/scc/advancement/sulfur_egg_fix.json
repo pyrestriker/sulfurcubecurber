@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "used_egg": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:sulfur_cube_spawn_egg"
+          ]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "scc:sulfur_egg_fix"
+  }
+}
