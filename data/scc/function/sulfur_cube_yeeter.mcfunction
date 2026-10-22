@@ -1,9 +1,9 @@
-# Tag 'em, bag 'em
-tag @e[type=minecraft:sulfur_cube,tag=!safe] add check
+#   This should allow them to self-tag. We check for cubes missing both tags and they mark themselves for checking:
+execute as @e[type=minecraft:sulfur_cube,tag=!safe,tag=!check] run tag @s add check
 
-# Sort 'em, yeet the ones outta line
-execute as @e[tag=check] at @s unless block ~ ~-1 ~ scc:sulfur_cube_spawnable run tp @s ~ -1000 ~
+#   Then, we want to only allow the ones tagged with "check" and not "safe" to run the commands to check below themselves.
+#   This first one lets the unsafe ones check if they are safe, and then marks themselves safe from being yeeted.
+execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s if block ~ ~-1 ~ #scc:sulfur_cube_spawnable run tag @s add safe
 
-# Now, for the all-day pass wristband!
-tag @e[tag=check] add safe
-tag @e[tag=check] remove check
+#   And now, any that haven't been tagged as safe (while also checking the conditions are still not met for the block tag) get the Yeeter 5000.
+execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s unless block ~ ~-1 ~ #scc:sulfur_cube_spawnable run tp @s ~ ~-1000 ~
