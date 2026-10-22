@@ -7,9 +7,10 @@ execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s if block ~ ~
 
 
 #   Okay, let's try tagging the eggs and buckets beforehand? Maybe this time will be consistent.
-execute as @a[items=minecraft:sulfur_cube_spawn_egg] run item modify entity @s weapon.mainhand scc:eggs_fix
+execute as @p[nbt={SelectedItem:{id:"minecraft:sulfur_cube_spawn_egg",count:1}}] run item modify entity @s weapon.mainhand scc:eggs_fix
 
-#   Somehow this also fixes the buckets? Not sure how but I'll chalk that as a win for now.
+#   Same for the buckets
+execute as @p[nbt={SelectedItem:{id:"minecraft:sulfur_cube_bucket",count:1}}] run item modify entity @s weapon.mainhand scc:eggs_fix
 
 #   And now, any that haven't been tagged as safe (while also checking the conditions are still not met for the block tag) get the Yeeter 5000.
 execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s unless block ~ ~-1 ~ #scc:sulfur_cube_spawnable run tp @s ~ ~-1000 ~
