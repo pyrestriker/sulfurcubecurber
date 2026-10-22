@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:set_components",
+  "components": {
+    "minecraft:entity_data": {
+      "id": "minecraft:sulfur_cube",
+      "Tags": ["safe"]
+    }
+  }
+}

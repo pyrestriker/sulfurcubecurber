@@ -5,5 +5,11 @@ execute as @e[type=minecraft:sulfur_cube,tag=!safe,tag=!check] run tag @s add ch
 #   This first one lets the unsafe ones check if they are safe, and then marks themselves safe from being yeeted.
 execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s if block ~ ~-1 ~ #scc:sulfur_cube_spawnable run tag @s add safe
 
+
+#   Okay, let's try tagging the eggs and buckets beforehand? Maybe this time will be consistent.
+execute as @a[items=minecraft:sulfur_cube_spawn_egg] run item modify entity @s weapon.mainhand scc:eggs_fix
+
+#   Somehow this also fixes the buckets? Not sure how but I'll chalk that as a win for now.
+
 #   And now, any that haven't been tagged as safe (while also checking the conditions are still not met for the block tag) get the Yeeter 5000.
 execute as @e[type=minecraft:sulfur_cube,tag=check,tag=!safe] at @s unless block ~ ~-1 ~ #scc:sulfur_cube_spawnable run tp @s ~ ~-1000 ~
